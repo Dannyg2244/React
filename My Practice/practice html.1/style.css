@@ -1,0 +1,19 @@
+
+
+
+.box {
+    display: grid;
+    width: 80px;
+    height: 90px;
+    border-color: blue;
+    border: solid green;
+    border-radius: 12px;
+    background-color: red;
+    padding: 40px;
+}
+
+.box:hover {
+    transform: rotateZ(60deg);
+    transition: 3s;
+    background-color: blue;
+}
