@@ -67,10 +67,11 @@ function App(){
 
 export default App
 */
-
 import {Routes, Route, Link} from "react-router-dom"
-import About from "./About"
-import Homepage from "./Hompage"
+import React from "react"
+import Contact from "./Contact"
+import AboutMe from "./AboutMe"
+import Homepage from "./Homepage"
 
 function App(){
    return(
@@ -78,10 +79,12 @@ function App(){
          <nav>
             <Link to="/" className="nav-item">Homepage</Link>
             <Link to="/about-me" className="nav-item">About Me</Link>
+            <Link to="/contact-me" className="nav-item">Contact</Link>
          </nav>
          <Routes>
          <Route path="/" element={<Homepage />} />
-         <Route path="/about-me" element={<About />} />
+         <Route path="/about-me" element={<AboutMe />} />
+         <Route path="/contact-me" element={<Contact message= "you can reach my by calling 08039884957" />} />
          </Routes>
       </div>
    )
