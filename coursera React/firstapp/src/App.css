@@ -1,4 +1,4 @@
-.App {
+/*.App {
   text-align: center;
 }
 
@@ -35,4 +35,44 @@
   to {
     transform: rotate(360deg);
   }
+}
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  display: inline-flex;
+  flex: 1;
+   height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.fieldset {
+  display: flex;
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 16px;
+  width: 480px;
+  flex-direction: column;
+}
+
+input, select {
+  margin-bottom: 1rem;
+}
+
+label { 
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }

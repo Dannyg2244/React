@@ -13,8 +13,8 @@ function Promo(props){
 
 /**in the css */
 .promo-Section{
-    fontWeight: bold;
-    lineHeight: 20px;
+    font-Weight: bold;
+    line-Height: 20px;
 }
 
 /**or adding some inline styles to it using the code below*/

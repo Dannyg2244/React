@@ -1,7 +1,7 @@
-const bool = false
+let bool = false
 function Example(props){
     return (
-        <h2>The value of the toggleBoolean prop is:{props.toggleoolean.toString()}</h2>
+        <h2>The value of the toggleBoolean prop is:{props.toggleBoolean.toString()}</h2>
     )
 }
 export default function App(){
@@ -14,7 +14,7 @@ export default function App(){
 
 //several props being pass to the Example component
 
-const bool = false
+let bool = false
 const str1 = "just"
 function Example(props){
     return (
