@@ -488,49 +488,383 @@ export default function App() {
       </div>
    )
 }*/
+/*
+import { useState, useEffect, useRef } from "react"
+import React from "react"
 
-import React, { useEffect, useState, useRef } from "react"
-//import {useState, useRef} from "react"
+export default function App(){
+   const [day, setDay] = useState("monday")
+   const prevDay = Previous(day)
 
-export default function App() {
-   const [day, setDay] = React.useState("monday")
-   const prevDay = usePrevious(day)
+   const getDay = () => {
+      if(day === "monday"){
+         setDay("tuesday")
+      }
+      else if(day === "tuesday") {
+         setDay("wednesday")
+      }
+      else if(day === "wednesday") {
+         setDay("thursday")
+      }
+      else if(day === "thursday") {
+         setDay("friday")
+      }
+      else if (day === "friday" ){
+         setDay("monday")
+      }
+   }
 
-   
-   const getNextDay = () => {
-   if (day === "monday") {
-      setDay("tuesday")
-   }
-   else if(day === "tuesday") {
-      setDay("wednesday")
-   }
-   else if(day === "wednesday") {
-      setDay("thursday")
-   }
-   else if (day === "thursday") {
-      setDay("friday")
-   }
-   else if (day === "friday") {
-      setDay("monday")
-   }
-}
-   return (
+   return(
       <div>
-         <h1>
-            Today is: {day} <br/>
-            { prevDay && <span>yesterday working day was: {prevDay}</span>}
-         </h1>
-         <button onClick={getNextDay}>get next day</button>
+      <h1>The Workers Day</h1>
+      <div>
+         <h1>today is {day} </h1>
+            {prevDay && <h2>The Previous Working day was {prevDay}</h2>}
+            <button onClick={getDay}>get next day</button>
+      </div>
       </div>
    )
 }
-// To define your own hook state, it has to be outside the function App
-const usePrevious = (val) => {
-   const ref = React.useRef()
+
+function Previous(val) {
+   const ref = useRef()
    useEffect(() => {
       ref.current = val
    }, [val])
    return ref.current
 }
+*/
+/*
+import React from "react"
 
-//export default usePrevious
+function Button({children, backgroundColor}) {
+   return <button style={backgroundColor}> {children}</button>
+}
+function Alert({children}) {
+   return(
+      <div>
+      <div className="overlay" />
+      <div className="alert">{children}</div>
+      </div>
+   )
+}
+
+function deleteButton() {
+   <button style={backgroundColor = "red"}>Delete</button>
+}
+export default function App() {
+   return (
+      <div>
+      <header>Little Lemon Restaurant</header>
+      <Alert>
+      <h1>Delete Account</h1>
+      <p>Are you sure you wanna continue with the deletion</p>
+      <deleteButton />
+      </Alert>
+      </div>
+   )
+}*/
+
+/*
+import React, {useState} from "react"
+
+export default function App() {
+   const [selected, setSelected] = useState("")
+      return (
+         <div className="App">
+            <h1>How did you hear about us</h1>
+            <RadioGroup onChange={setSelected} selected={selected}>
+               <RadioOption value="Social-Media">Social-Media</RadioOption>
+               <RadioOption value="Television">Television</RadioOption>
+               <RadioOption value="News">News</RadioOption>
+               <RadioOption value="Others">Others</RadioOption>
+            </RadioGroup>
+            <button disabled={!selected}>submit</button>
+         </div>
+      )
+   }
+export const RadioGroup = ({onChange, selected, children}) => {
+   const RadioOption = React.Children.map(children, (child) => {
+      return React.cloneElement( child, {
+         onChange,
+         checked : child.props.value === selected,
+      })
+   })
+   return <div className="RadioGroup">{RadioOption}</div>
+}
+
+export const RadioOption = ({onChange, checked, value, children}) => {
+   return (
+      <div>
+       <input 
+      type="radio"
+      id={value}
+      name={value}
+      value={value}
+      checked={checked}
+      onChange={e => {onChange(e.target.value)}}
+      />
+      <label htmlFor={value}>{children}</label>
+      </div>
+   )
+}*/
+/*
+import React from "react"
+import { useState, useEffect } from "react"
+
+const MousePosition = ({render}) => {
+   const [MousePosition, setMosuePosition] = useState({
+      x : 0,
+      y : 0,
+   })
+   
+      useEffect(() => {
+         const handleMousePosition = (e) => {
+         setMosuePosition({
+            x: e.clientX,
+            y: e.clientY
+         })
+   }
+   window.addEventListener("mousemove", handleMousePosition)
+
+   return () => {
+      window.removeEventListener("mousemove", handleMousePosition)
+   }
+      }, [])
+      return render({MousePosition})
+}
+
+const PanelMousePosition = () => {
+   return (
+      <div className="MouseTracker">
+         <p>Mouse Position</p>
+         <MousePosition
+        render={({MousePosition}) => (
+         <div>
+         <span>x: {MousePosition.x}</span>
+         <span>y: {MousePosition.y}</span>
+         </div>
+   )}
+         />
+      </div>
+   )
+}
+
+const PointMousePosition = () => {
+   return (
+      <div>
+         <MousePosition 
+         render={({MousePosition}) => (
+            <div>
+               <p> {MousePosition.x}, {MousePosition.y}</p>
+            </div>
+         )}
+         />
+      </div>
+   )
+}
+
+export default function App() {
+   return (
+      <div>
+         <header>Little Lemon Restaurant</header>
+         <PanelMousePosition />
+         <PointMousePosition />
+      </div>
+   )
+}
+*/
+/*
+import React from "react"
+import { useState } from "react"
+function FeedBackForm(props) {
+   const [score, setScore] = useState("10")
+   const [comment, setComment] = useState("")
+
+   const isDisabled = Number(score) < 5 && comment.length <= 10
+
+   let TextAreaPlaceHolder; 
+   if (TextAreaPlaceHolder === isDisabled){
+      alert("pls provide a comment explaining why the experience is not good  minimun 10 length")
+   }
+   else {
+      alert("Optional Feedback")
+   }
+
+   function handleSubmit(e) {
+      e.preventDefault()
+      //  onSubmit({score, comment})
+   }
+
+   function handleClick(e) {
+      setScore(e.target.value)
+   }
+
+      return (
+      <div>
+         <form onSubmit={handleSubmit}>
+            <fieldset>
+               <h2>Feedback Form</h2>
+               <div>
+         <label htmlFor="score">Score: </label>
+         <input
+         type="range"
+         id={score}
+         value={score}
+         min="0"
+         max="10"
+         />
+         <div>
+            <div>
+            <label>Comment</label>
+            </div>
+            <textarea
+            name="comment"
+            value="text"
+            placeholder={TextAreaPlaceHolder}
+            onChange={e => {setComment(e.target.value)}}
+            />
+         </div>
+         <button disabled={isDisabled} onClick={handleClick}>submit</button>
+         </div>
+         </fieldset>
+         </form>
+      </div>
+   )
+}
+
+export default function App() {
+   const handleSubmit = (e) => {
+      e.preventDefault()
+   }
+   return (
+      <div>
+         <FeedBackForm onSubmit={handleSubmit}/>
+      </div>
+   )
+}*/
+//Creating my simple Calculator
+import React from "react"
+import {useState, useRef} from "react"
+import "./App.css"
+
+function Header() {
+   return (
+      <div className="header">
+         <a href="https://github.com/Dannyg2244">github</a>
+         <a href="https://www.linkedin.com/feed/">LinkedIn</a>
+      </div>
+   )
+}
+
+function Footer() {
+   return(
+      <div className="footer">
+         <h1>@dannyg plc</h1>
+      </div>
+   )
+}
+
+function App() {
+   const inputRef = useRef(null);
+   const resultRef = useRef(null);
+   const [result, setResult] = useState(0);
+
+   function plus(e) {
+      e.preventDefault();
+      setResult((result) => result + Number(inputRef.current.value))
+   };
+
+   function minus(e) {
+      e.preventDefault();
+      setResult((result) => result - Number(inputRef.current.value))
+   };
+
+   function divide(e){
+      e.preventDefault();
+      setResult((result) => result / Number(inputRef.current.value))
+   };
+
+   function times(e) {
+      e.preventDefault();
+      setResult((result) => result * Number(inputRef.current.value))
+   };
+
+   function resetInput(e) {
+      e.preventDefault()
+      setResult((result) => Number(inputRef.current.value))
+   };
+
+   function resetResult(e) {
+      e.preventDefault()
+      setResult((result) =>  Number(resultRef.current.value));
+   };
+
+   return (
+      <div>
+         <Header />
+      <div className="App">
+         <div>
+            <h1>Welcome you all to this wonderful presentation</h1>
+            <h2>This is your boy Ikuyajolu Gbenga Daniel</h2>
+         </div>
+         <form>
+            <fieldset className="field">
+         <p ref={resultRef}>
+            {result}
+         </p>
+         <input
+            pattern="[0-9]"
+            ref={inputRef}
+            type="number"
+            placeholder="Type a number"
+         />
+         <button onClick={plus}>add</button>
+         <button onClick={minus}>subtract</button>
+         <button onClick={times}>multiply</button>
+         <button onClick={divide}>divide</button>
+         <button onClick={resetInput}>reset Input</button>
+         <button onClick={resetResult}>reset result</button>
+         </fieldset>
+         </form>
+      </div>
+      <div>
+      <Footer />
+         </div>
+      </div>
+   )
+}
+
+export default App;
+
+/*
+import { ChakraProvider } from "@chakra-ui/react"
+
+import Header from "./component/Header"
+import { AlertProvider } from "./context/alertContext"
+import LandingSection from "./components/LandingSection";
+import ProjectsSection from "./components/ProjectsSection";
+import ContactMeSection from "./components/ContactMeSection";
+import Footer from "./components/Footer";
+import { AlertProvider } from "./context/alertContext";
+import Alert from "./components/Alert";
+
+function App() {
+  return (
+    <ChakraProvider>
+      <AlertProvider>
+        <main>
+          <Header />
+          <LandingSection />
+          <ProjectsSection />
+          <ContactMeSection />
+          <Footer />
+          <Alert />
+        </main>
+      </AlertProvider>
+    </ChakraProvider>
+  );
+}
+
+export default App;
+*/
