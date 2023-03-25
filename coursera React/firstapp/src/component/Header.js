@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 //import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 // import {
 //   faGithub,
-//   faLinkedin,
+//   faLinkedin
 //   faMedium,
 //   faStackOverflow,
 // } from "@fortawesome/free-brands-svg-icons";
