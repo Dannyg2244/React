@@ -113,14 +113,14 @@ function App() {
 
     return(
         <MyContext.Provider value={contextValue}>
-            <div>
+            <>
             <h1>My App</h1>
             <button onClick={() => setContextValue("Updated")}>
                 Clickme
             </button>
             <ChildComponent />
             <BabyComponent />
-            </div>
+            </>
         </MyContext.Provider>
     )
 }
@@ -128,9 +128,9 @@ function App() {
 const ChildComponent = () => {
     const contextValue = useContext(MyContext)
     return (
-        <div>
+        <>
             <p>This is my {contextValue.name} app content creator</p>
-        </div>
+        </>
     )
 }
 
@@ -138,17 +138,17 @@ const ChildComponent = () => {
 const BabyComponent = () => {
     const contextValue = useContext(MyContext)
     return (
-        <div>
+        <>
             <h3>my story</h3>
-            <p>i was going to my house on a very faitful day suddenly i heard {contextValue.baby}</p>
-        </div>
+            <p>i was going to my house on a very faithful day suddenly i heard {contextValue.baby}</p>
+        </>
     )
 }
 
 export default App
 */
 
-//creating theme switcher 
+//creating theme switcher
 /*
 import { UserContext, useUser} from "./ThemeContext";
 import { Switch } from "./Switch";
@@ -157,19 +157,16 @@ import React from "react";
 const Title = ({children}) => {
     const {theme} = useUser()
     return (
-        
             <p style={{
                 color: theme === "light" ? "black" : "white"}}>
                 {children}
             </p>
-        
     )
 }
 
 const Head = ({children}) => {
     const {theme} = useUser()
     return (
-        
             <h1
             style={{
                 color: theme === "light" ? "black" : "white"
@@ -177,7 +174,6 @@ const Head = ({children}) => {
             >
                 {children}
             </h1>
-       
     )
 }
 
@@ -320,25 +316,26 @@ function App() {
     }, []);
 
     return (
-        <div>
+        <>
             <h1>Using the use Effect hooks</h1>
             <button onClick={clickHandler}>
                 toggle button
             </button>
             {toggle && <h2>You are welcome</h2>}
-        </div>
+        </>
     )
 }
 
 export default App
 */
+
 import React from "react"
 
 function App() {
-    const [data, setData] = React.useState([])
+    const [data, setData] = React.useState(null)
 
     const fetchData = () => {
-        fetch("https://jsonplaceholder.typicode.com/users")
+        fetch("https://localhost:400/users/register")
         .then((response) => response.json())
         .then((data) => setData(data))
         .catch(error => console.error(error))
@@ -350,15 +347,87 @@ function App() {
 
     return (
         <div>
-            <h1>Welcome to fetching data using use Effect hooks</h1>
-            {data.map(users => (
-                <div key={users.id}>
-                    <h2>{users.name}</h2>
-                    <p>{users.email}</p>
-                </div>
-            ))}
+            <form>
+                <label htmlFor="username">username</label>
+                <input type="text" id="username" name="username" />
+                <label htmlFor="email">email</label>
+                <input type="email" id="email" name="email" />
+                <label htmlFor="password">password</label>
+                <input type="password" id="password" name="password" />
+                <button type="submit">sign up</button>
+            </form>
+            <h1>registered user</h1>
+            <ul>
+        {Array.isArray(data) &&
+          data.map((user) => (
+            <React.Fragment key={user.id}>
+              <li>{user.username}</li>
+              <li>{user.email}</li>
+            </React.Fragment>
+          ))}
+      </ul>
         </div>
     )
 }
 //"https://restcountries.com/v3.1/all"
+//https://api.example.com/items
+//https://raw.githubusercontent.com/Meta-Front-End-Developer-PC/capstone/master/api.js
 export default App
+
+/*
+import React from "react"
+import { useState } from "react"
+
+const reducer = (state, action) => {
+    if(action.type === "")
+}
+
+function App() {
+    const [date, setDate] = useState()
+    const [time, setTime] = useState()
+    const [number, setNumber] = useState()
+    const [occasion, setOccasion] = useState()
+    const isFormValid = () => {
+        return (
+            date &&
+            time &&
+            number &&
+            occasion
+        )
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+    }
+    return (
+        <>
+        <form onSubmit={handleSubmit}>
+            <fieldset>
+            <label htmlFor="res-date">Chose date</label>
+            <input type="date" id="res-date" value={date} onChange={e => setDate(e.target.value)}/>
+            <label htmlFor="res-time">Chose time</label>
+            <select id="res-time" value={time} onChange={e => setTime(e.target.value)}>
+                <option>17:00</option>
+                <option>18:00</option>
+                <option>19:00</option>
+                <option>20:00</option>
+                <option>21:00</option>
+                <option>22:00</option>
+            </select>
+            <label  htmlFor="guest">Number of guests</label>
+            <input  type="number" placeholder="1" min="1" max="10" id="guest" value={number} onChange={e => setNumber(e.target.number)}/>
+            <label htmlFor="occasion">Occasion</label>
+            <select id="occasion" value={occasion} onChange={e => setOccasion(e.target.value)}>
+                <option>Birthday</option>
+                <option>Anniversary</option>
+                <option>Night club</option>
+            </select>
+            <button  value="make your reservation" disabled={isFormValid} >submit</button>
+            </fieldset>
+        </form>
+        </>
+    )
+}
+//updating the above form using useReducer
+export default App
+*/
+
